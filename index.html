@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Filter and Custom Filters</title>
+    <style>
+        input.ng-invalid{
+            background-color: red;
+        }
+        input{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div ng-app="main" ng-strict-di>
+
+    <div ng-controller="MyController as myctrl">
+        <label>Number Custom Filter:</label>
+        <input type="text" ng-model="myctrl.data">
+        <span>{{myctrl.data | NumberFilter}}</span>
+        <br />
+
+        <lable>Index:</lable><input type="number" ng-model="myctrl.index" min="0">
+        <label>String:</label><input type="text" ng-model="myctrl.text">
+        <span>{{myctrl.text | CapitalizeFilter : myctrl.index}}</span>
+
+        <form onsubmit="alert('Successfully')">
+            <label>Name:</label><input type="text" ng-model="myctrl.name" required>
+            <label>DOB:</label><input type="date" ng-model="myctrl.dob" required>
+            <label>email:</label><input type="email" ng-model="myctrl.email">
+            <input type="submit">
+        </form>
+
+
+    </div>
+</div>
+<script src="app/vendor/angular.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/controllers/myController.js"></script>
+<script src="app/filters/capitalizeFilter.js"></script>
+<script src="app/filters/numberFilter.js"></script>
+</body>
+</html>
